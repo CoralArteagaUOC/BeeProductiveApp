@@ -8,7 +8,6 @@ export default defineConfig({
   plugins: [react(), tailwindscss(),
     VitePWA({
       base: '/BeeProductiveApp/',
-      
       registerType: 'autoUpdate',
       includesAssets: ['favicon.svg', 'robots.text'],
       workbox:{
