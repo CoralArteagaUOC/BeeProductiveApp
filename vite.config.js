@@ -6,7 +6,12 @@ import tailwindscss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindscss(),
-    VitePWA({
+   
+  ],
+  base:'/BeeProductiveApp/',
+})
+
+ //VitePWA({
       base: '/BeeProductiveApp/',
       registerType: 'autoUpdate',
       includesAssets: ['favicon.svg', 'robots.text'],
@@ -69,8 +74,5 @@ export default defineConfig({
           ]
         }
         )
-      })
-  ],
-  base:'/BeeProductiveApp/',
-})
+ //     })
 
