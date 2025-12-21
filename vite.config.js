@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [react(), tailwindscss(),
     VitePWA({
       base: '/BeeProductiveApp/',
+      
       registerType: 'autoUpdate',
       includesAssets: ['favicon.svg', 'robots.text'],
       workbox:{
@@ -15,7 +16,7 @@ export default defineConfig({
         globPatterns:['**/*.{js,css,html,ico,png,svg,jpg}']
       },
       manifest: ({
-          name: 'BeeProductive App',
+          name: 'BeeProductiveApp',
           short_name: 'Beeproductive',
           description: ' Productivity App',
           start_url: '/',
