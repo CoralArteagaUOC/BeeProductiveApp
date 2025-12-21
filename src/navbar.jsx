@@ -11,14 +11,14 @@ function NavbarComponent( ) {
            
             <nav className= 'flex justify-between w-full'>
                 
-                <Link to="/home">Home</Link>
-                <Link to="/timer">Timer</Link>
-                <Link to="/folders">Folders</Link>
-                <Link to="/notes">Notes</Link>
-                <Link to="/settings">Settings</Link>
+                <Link to="/BeeProductiveApp/home">Home</Link>
+                <Link to="/BeeProductiveApp/timer">Timer</Link>
+                <Link to="/BeeProductiveApp/folders">Folders</Link>
+                <Link to="/BeeProductiveApp/notes">Notes</Link>
+                <Link to="/BeeProductiveApp/settings">Settings</Link>
                 <div>
                 {user?(
-                    <Link to ='/'> Log Out </Link>
+                    <Link to ='/BeeProductiveApp/'> Log Out </Link>
                 ): (
                     console.log("no user logged in")
                 )}

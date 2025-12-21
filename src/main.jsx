@@ -32,15 +32,15 @@ createRoot(document.getElementById('root')).render(
     <AuthContextProvider>
       <NotesProvider>
         <RouterProvider router={router} />
-        <HashRouter basename ="/BeeProductiveApp">
+        <HashRouter>
           <Routes>
-            <Route path="/" element={<App />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/notes" element={<NotesPage />} />
-            <Route path="/timer" element={<TimerPage />} />
-            <Route path="/notes" element={<NotesPage />} />
-            <Route path="/folders" element={<FoldersPage />} />
-            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/BeeProductiveApp/" element={<App />} />
+            <Route path="/BeeProductiveApp/home" element={<Home />} />
+            <Route path="/BeeProductiveApp/notes" element={<NotesPage />} />
+            <Route path="/BeeProductiveApp/timer" element={<TimerPage />} />
+            <Route path="/BeeProductiveApp/notes" element={<NotesPage />} />
+            <Route path="/BeeProductiveApp/folders" element={<FoldersPage />} />
+            <Route path="/BeeProductiveApp/settings" element={<SettingsPage />} />
             {/* <Route path="/Timer" element={<Timer />} /> */}
           </Routes>
       </HashRouter>

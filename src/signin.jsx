@@ -13,7 +13,7 @@ const Signin = () => {
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
-      navigate('/home');
+      navigate('/BeeProductiveApp/home');
     } catch (err) {
       console.log(err);
     }
@@ -22,7 +22,7 @@ const Signin = () => {
   const handleSignOut = async () => {
     try {
       await logOut();
-      navigate('/');
+      navigate('/BeeProductiveApp/');
     } catch (err) {
       console.log(err);
     }
