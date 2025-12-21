@@ -32,7 +32,7 @@ createRoot(document.getElementById('root')).render(
     <AuthContextProvider>
       <NotesProvider>
         <RouterProvider router={router} />
-        <HashRouter basename = "/BeeProductiveApp">
+        <HashRouter basename ="/BeeProductiveApp">
           <Routes>
             <Route path="/" element={<App />} />
             <Route path="/home" element={<Home />} />
