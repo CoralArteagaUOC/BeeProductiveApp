@@ -18,12 +18,12 @@ import { NotesProvider } from './context/NotesContext';
 
 //Se recogen las páginas en el BrowserRouter para navegar
 const router = createBrowserRouter([
-  {path:"/",element:<App/>},
-  {path:"/home",element:<Home/>},
-  {path: "/timer", element:<TimerPage/>},
-  {path: "/folders", element:<FoldersPage/>},
-  {path: "/notes", element:<NotesPage/>},
-  {path: "/settings", element:<SettingsPage/>}
+  {path:"/BeeProductiveApp/",element:<App/>},
+  {path:"/BeeProductiveApp/home",element:<Home/>},
+  {path: "/BeeProductiveApp/timer", element:<TimerPage/>},
+  {path: "/BeeProductiveApp/folders", element:<FoldersPage/>},
+  {path: "/BeeProductiveApp/notes", element:<NotesPage/>},
+  {path: "/BeeProductiveApp/settings", element:<SettingsPage/>}
 
 ])
 
