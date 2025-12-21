@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+
+body{
+    background-color: black;
+    color: white;
+    overflow-y: scroll;
+}
+
+nav :hover{
+   color: yellow;
+}
+
+
+.wrapper{
+   background-color: rgb(31, 26, 19);
+   height: 100%;
+}
+
+.block1{
+    background-color: rgb(201, 117, 8);
+}
+
+.block2{
+    background-color: rgb(16, 54, 42);
+}
+.blackText{
+    color: black; 
+    font-weight: 700;
+}
+
+.inputField{
+   border: 2px black;
+   
+
+}
+

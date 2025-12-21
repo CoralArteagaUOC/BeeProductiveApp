@@ -1,0 +1,40 @@
+//HOME
+function Home (){
+    return(
+        <FolderComponent /> //component
+        <Calendar /> //component
+    );
+};
+export defeault Home;
+
+//FOLDERS
+function FolderComponent (){
+    return(
+        fetch and display notes + deadline (Desde Firebase)
+    );
+};
+
+export defeault FolderComponent;
+
+//NOTES
+function NoteComponent (){
+    return( (objeto recogido por Firebase)
+        //propieades del objeto (Id, title, content, deadline)
+        <div> texto que el usuario insertará en el formulario de notas
+            <h3> Título </h3>
+            <p> Texto, tareas, apuntes... </p>
+            <input type = "date"> date that will be the a folder component's title </input>
+         </div>
+    );
+};
+
+
+//TIMER
+function Timer(){
+    return(
+        <TimerComponent />
+    );
+};
+export defeault Pomodoro;
+
+function
