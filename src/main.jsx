@@ -10,7 +10,7 @@ import FoldersPage from './folders.jsx'
 import SettingsPage from './settings.jsx'
 
 import { AuthContextProvider } from './context/UserAuth.jsx';
-import { createBrowserRouter, HashRouterHash, Router, Routes, Route, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, HashRouter, Routes, Route, RouterProvider } from 'react-router-dom'
 import { NotesProvider } from './context/NotesContext';
 
 //Este desarrollo se ha realizado con el apoyo de la documentación de firebase y
