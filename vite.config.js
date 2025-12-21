@@ -70,6 +70,6 @@ export default defineConfig({
         )
       })
   ],
-  base:'/BeeProductiveApp',
+  base:'/BeeProductiveApp/',
 })
 
