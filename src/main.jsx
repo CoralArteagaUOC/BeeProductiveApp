@@ -38,7 +38,7 @@ createRoot(document.getElementById('root')).render(
             <Route path="/home" element={<Home />} />
             <Route path="/notes" element={<NotesPage />} />
             <Route path="/timer" element={<TimerPage />} />
-            <Route path="/notes" element={<NotesPage />}
+            <Route path="/notes" element={<NotesPage />} />
             <Route path="/folders" element={<FoldersPage />} />
             <Route path="/settings" element={<SettingsPage />} />
             {/* <Route path="/Timer" element={<Timer />} /> */}
