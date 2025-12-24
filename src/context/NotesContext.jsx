@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import { db } from "../firebase";
 import { query, collection, onSnapshot } from "firebase/firestore";
 
@@ -23,6 +23,7 @@ export function NotesProvider({ children }) {
     return () => unsubscribe();
   }, []);
 
+  //Se envían los datos a los componentes que lo requieran y que puedan recibirlos
   return (
     <NotesContext.Provider value={{ notes, setNotes }}>
       {children}

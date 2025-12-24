@@ -1,25 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { db } from "../firebase";
+import { doc, getDoc } from "firebase/firestore";
 
-function NoteManager({ notes, onNoteSelect }) {
+function NoteManager({ selectedFolder, noteIds }) {
+  const [notes, setNotes] = useState([]);
+  const [selectedNoteId, setSelectedNoteId] = useState(null);
+
+  useEffect(() => {
+    if (!selectedFolder || !noteIds) return;
+
+    const fetchNotes = async () => {
+      const notesData = [];
+      for (const noteId of noteIds) {
+        const noteRef = doc(db, "notes", noteId);
+        const noteSnapshot = await getDoc(noteRef);
+        if (noteSnapshot.exists()) {
+          notesData.push({ id: noteId, ...noteSnapshot.data() });
+        }
+      }
+      setNotes(notesData);
+    };
+
+    fetchNotes();
+  }, [selectedFolder, noteIds]);
+
  
 
+
   return (
-    <div>
-      {notes && notes.length > 0 ? (
-        <ul>
-          {notes.map((note) => (
-            <li key={note.id} onClick={() => onNoteSelect(note)}>
-              <div>
-                <h3>{note.title}</h3>
-                
-              </div>
-            </li>
-          ))}
-        </ul>
-        
-      ) : (
-        console.log("there's an empty folDer")
-      )}
+    <div className="noteManager">
+      {notes.map((note) => (
+        <div
+          key={note.id}
+          className={`note ${selectedNoteId === note.id ? "selected" : ""}`}
+          onClick={() => setSelectedNoteId(note.id)}
+        >
+          <h3>{note.title}</h3>
+        </div>
+      ))}
+     
+      
     </div>
   );
 }

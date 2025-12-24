@@ -13,7 +13,7 @@ const Signin = () => {
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
-      navigate('/BeeProductiveApp/home');
+      navigate('/home');
     } catch (err) {
       console.log(err);
     }
@@ -22,7 +22,7 @@ const Signin = () => {
   const handleSignOut = async () => {
     try {
       await logOut();
-      navigate('/BeeProductiveApp/');
+      navigate('/');
     } catch (err) {
       console.log(err);
     }
@@ -31,7 +31,7 @@ const Signin = () => {
   return (
     <div>
    
-      <div className="max-w-60 m-auto p-4">
+      <div className=" flex justify-center p-4">
         {user ? (
           <button onClick={handleSignOut} className= " underline hover:text-red-600">Log Out</button>
           

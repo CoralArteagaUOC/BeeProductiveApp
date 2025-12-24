@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { db } from "../firebase";
-import { query, collection, onSnapshot, addDoc, deleteDoc, updateDoc, doc } from "firebase/firestore";
+import { collection, addDoc, setDoc, deleteDoc, updateDoc, doc, arrayUnion, } from "firebase/firestore";
+import { UserAuth } from "../context/UserAuth";
 import { useNotes } from '../context/NotesContext';
 
 //Para este desarrollo me he apoyado en la documentación de Firebase y en los siguiente videos de youtube
@@ -8,13 +9,16 @@ import { useNotes } from '../context/NotesContext';
 //Fuente: https://www.youtube.com/watch?v=dLySJhRL-AA&list=PLt4757glfbhGMJ9LxziIBKkUVAKQoVHn6
 
 
-//El componente de NoteCreator se encarga de crear y gestionar notas
+//El componente de NoteCreator se encarga de gestionar la creación de NOTAS y CARPETAS
 function NoteCreator(){
    
-    const { notes, setNotes } = useNotes();
-    const [title, setTitle] = useState('')
-    const [content, setContent] = useState('')
-    const [deadline, setDeadline] = useState('')
+    const { notes } = useNotes();
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
+    const [deadline, setDeadline] = useState('');
+
+    const {user} = UserAuth();
+
 
 
     // Crear una nota en la base de datos de Firebase (db)
@@ -32,9 +36,9 @@ function NoteCreator(){
         // Max Notes = 10
         const selectedDeadline = new Date(deadline);
         //En la base de datos de Firebase se recoge únicamente la fecha. Pero toDate devuelve fecha y hora (timestamp)
-            //toDate to ISOString without time (split ("T")). Así solo obtenemos la fecha
-            // fuente:
-            // https://bobbyhadz.com/blog/javascript-get-iso-date-without-time
+        //toDate to ISOString without time (split ("T")). Así solo obtenemos la fecha
+        // fuente:
+        // https://bobbyhadz.com/blog/javascript-get-iso-date-without-time
         const notesWithSameDeadline = notes.filter(
             (note) => new Date(note.deadline)=== selectedDeadline
         );
@@ -52,15 +56,45 @@ function NoteCreator(){
             });
             
             console.log("Document written with ID: ", docRef.id);
+            await createOrUpdateFolder(deadline, docRef.id);
+
             // Reset formulario
             setTitle("");
             setContent("");
             setDeadline("");
+
         
-            } catch (error) {
-            console.error("Error adding document: ", error);
-            }
+        } catch (error) {
+        console.error("Error adding document: ", error);
+        }
     };
+
+    //Crear carpeta con la fecha de la nota 
+    const createOrUpdateFolder = async (deadline, noteId) => {
+        const folderRef = doc(db, "folders", deadline);
+        await setDoc(folderRef, {
+            title: deadline,
+            // Se añade las notas al array
+            //fuente: https://firebase.google.com/docs/firestore/manage-data/add-data#update_elements_in_an_array
+            noteIds: arrayUnion(noteId),
+        }, { merge: true });
+
+        //Se añade la carpeta al usuario que la ha creado
+        if (user) {
+            const userRef = doc(db, "users", user.uid);
+            await setDoc(
+                userRef,
+                {
+                    userFolders: arrayUnion(deadline),
+                },
+                { merge: true }
+            );
+         }
+
+        
+    };
+
+    
 
    /* Pendiente eliminar una nota de firebase (desde el noteManager y el noteCreator)
     };*/

@@ -10,7 +10,7 @@ import FoldersPage from './folders.jsx'
 import SettingsPage from './settings.jsx'
 
 import { AuthContextProvider } from './context/UserAuth.jsx';
-import { createBrowserRouter, HashRouter, Routes, Route, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { NotesProvider } from './context/NotesContext';
 
 //Este desarrollo se ha realizado con el apoyo de la documentación de firebase y
@@ -18,12 +18,12 @@ import { NotesProvider } from './context/NotesContext';
 
 //Se recogen las páginas en el BrowserRouter para navegar
 const router = createBrowserRouter([
-  {path:"/BeeProductiveApp/",element:<App/>},
-  {path:"/BeeProductiveApp/home",element:<Home/>},
-  {path: "/BeeProductiveApp/timer", element:<TimerPage/>},
-  {path: "/BeeProductiveApp/folders", element:<FoldersPage/>},
-  {path: "/BeeProductiveApp/notes", element:<NotesPage/>},
-  {path: "/BeeProductiveApp/settings", element:<SettingsPage/>}
+  {path:"/",element:<App/>},
+  {path:"/home",element:<Home/>},
+  {path: "/timer", element:<TimerPage/>},
+  {path: "/folders", element:<FoldersPage/>},
+  {path: "/notes", element:<NotesPage/>},
+  {path: "/settings", element:<SettingsPage/>}
 
 ])
 
@@ -32,18 +32,6 @@ createRoot(document.getElementById('root')).render(
     <AuthContextProvider>
       <NotesProvider>
         <RouterProvider router={router} />
-        <HashRouter>
-          <Routes>
-            <Route path="/BeeProductiveApp/" element={<App />} />
-            <Route path="/BeeProductiveApp/home" element={<Home />} />
-            <Route path="/BeeProductiveApp/notes" element={<NotesPage />} />
-            <Route path="/BeeProductiveApp/timer" element={<TimerPage />} />
-            <Route path="/BeeProductiveApp/notes" element={<NotesPage />} />
-            <Route path="/BeeProductiveApp/folders" element={<FoldersPage />} />
-            <Route path="/BeeProductiveApp/settings" element={<SettingsPage />} />
-            {/* <Route path="/Timer" element={<Timer />} /> */}
-          </Routes>
-      </HashRouter>
       </NotesProvider>
     </AuthContextProvider>
   </StrictMode>,

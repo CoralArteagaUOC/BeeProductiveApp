@@ -15,14 +15,20 @@ function App() {
   const {user} = UserAuth();
   
   return(
-    <div>
-      
-       <h1 className= 'text-center text-2xl font-bold'>
-          BeeProductive App
-        </h1>
+    <div className='flex flex-col justify-center items-center'>
+        <div className='flex flex-col justify-center items-center ' >
+          
+          <img className= '  w-auto max-h-40 ' src="/icons/beeproductive_smbol.png" alt="BeeProductive logo" />
+          
+          <h1 className= 'text-center text-2xl font-bold w-full'>
+            BeeProductive App
+          </h1>
+        </div>
+       
         <div>
-          <Signin/> 
-          <Link className= " underline hover:text-yellow-400" to="/home">Go Home</Link>
+          <Signin className='w-full'/> 
+          <div> {user != null?<Link className= " underline hover:text-yellow-400" to="/home">Go Home</Link> : <p> Log in, please</p> }</div>
+          
         </div>
       
     
