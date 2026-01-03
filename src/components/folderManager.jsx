@@ -21,7 +21,7 @@ function FolderManager({ onFolderSelect, selectedFolder }) {
       const userFolders = userData.userFolders;
       const foldersData = {};
 
-      // Fetch each folder document
+      // Se recoge cada carpeta
       for (const folderTitle of userFolders) {
         const folderRef = doc(db, "folders", folderTitle);
         const folderSnapshot = await getDoc(folderRef);
@@ -30,9 +30,9 @@ function FolderManager({ onFolderSelect, selectedFolder }) {
           if (folderData.noteIds && folderData.noteIds.length > 0) {
             foldersData[folderTitle] = folderData;
           } else {
-            // Delete empty folder
+            // Se eliminan las carpetas vacías
             await deleteDoc(folderRef);
-            // Remove from userFolders array
+            // Se elimina del array
             await setDoc(
               userRef,
               {

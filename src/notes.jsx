@@ -1,6 +1,7 @@
 import './App.css'
 import  React,{useState, useEffect} from 'react'
 import Navbar from './navbar';
+import { useNotes } from './context/NotesContext';
 import FolderManager from './components/folderManager';
 import NoteCreator from './components/noteCreator';
 
@@ -9,7 +10,7 @@ import NoteCreator from './components/noteCreator';
 */
 
 function NotesPage(){
-    
+    const { handleFolderSelect, selectedFolder } = useNotes();
    
     return(
            
@@ -19,7 +20,7 @@ function NotesPage(){
             
             <div className= 'flex justify-around w-full h-200 wrapper'>
                <div className =" w-2/6 h-200 overflow-y-scroll">
-                   <FolderManager/>
+                   <FolderManager onFolderSelect={handleFolderSelect} selectedFolder={selectedFolder}/>
                 </div>
               
                 <div  className ="block2 w-full h-auto">

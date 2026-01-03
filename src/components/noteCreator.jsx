@@ -12,13 +12,20 @@ import { useNotes } from '../context/NotesContext';
 //El componente de NoteCreator se encarga de gestionar la creación de NOTAS y CARPETAS
 function NoteCreator(){
    
-    const { notes } = useNotes();
+    const { notes, selectedFolder} = useNotes();
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [deadline, setDeadline] = useState('');
 
     const {user} = UserAuth();
 
+    //Si se selecciona una carpeta existente desde el panel,
+    //se actualiza la variable deadline (fecha de entrega)
+    useEffect(() => {
+        if (selectedFolder) {
+        setDeadline(selectedFolder);
+        }
+    }, [selectedFolder]);
 
 
     // Crear una nota en la base de datos de Firebase (db)
@@ -57,6 +64,8 @@ function NoteCreator(){
             
             console.log("Document written with ID: ", docRef.id);
             await createOrUpdateFolder(deadline, docRef.id);
+            
+            await deleteNote (noteId);
 
             // Reset formulario
             setTitle("");
@@ -68,6 +77,8 @@ function NoteCreator(){
         console.error("Error adding document: ", error);
         }
     };
+
+   
 
     //Crear carpeta con la fecha de la nota 
     const createOrUpdateFolder = async (deadline, noteId) => {
@@ -89,13 +100,45 @@ function NoteCreator(){
                 },
                 { merge: true }
             );
-         }
+         
+        }
+         
 
+        
+    };
+
+    const deleteNote = async (noteId) => {
+        noteRef = doc(db, "notes", noteId);
+        console.log("Note Ref:" + noteRef);
+        if(noteRef.exists()){
+            await deleteDoc(doc (db, "notes", noteSnapshot));
+            console.log("Document" + noteId + "was deleted");
+        }
+        else{
+            setTitle("");
+            setContent("");
+            setDeadline("");
+        }
+        /*const noteRef = doc(db, "notes", noteId);
+        const noteSnapshot = await getDoc(noteRef);
+        if(noteSnapshot.exists()){
+           deleteDoc(doc (db, "notes", noteSnapshot));
+            console.log("Documente" + noteId + "was deleted");
+        }
+        else{
+
+           
+            return;
+           
+        }*/
         
     };
 
     
 
+    
+      
+    
    /* Pendiente eliminar una nota de firebase (desde el noteManager y el noteCreator)
     };*/
 
@@ -129,7 +172,7 @@ function NoteCreator(){
            <div className='bg-blue-300 grid-cols-2'>
                 <div className='flex p-4 gap-5'>
                     <div> 
-                        <button className='bg-black p-2 hover:bg-amber-400 hover:text-black' type='button'> 
+                        <button onClick={deleteNote} className='bg-black p-2 hover:bg-amber-400 hover:text-black' type='button'> 
                             Delete
                         </button>
                     </div>

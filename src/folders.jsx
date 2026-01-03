@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Navbar from './navbar';
 import NoteManager from './components/noteManager';
 import FolderManager from './components/folderManager';
+import { useNotes } from './context/NotesContext';
 
 /* El componente FolderPage es la págian de carpetas y padre de los componenetes FolderManager y NoteManager
     Debido a los datos que comparten los dos componenetes mencionados, gestiona la selección de carpetas y notas
@@ -12,13 +13,15 @@ function FoldersPage(){
      fuente:https://react.dev/reference/react/useState
      Así los elementos reciben información, solo cuando se produzca un cambio
     */
+   /*
     const [selectedFolder, setSelectedFolder] = useState(null);
     const [noteIds, setNoteIds] = useState([]);
     const handleFolderSelect = (deadline, ids) => {   
         setSelectedFolder(deadline);
         setNoteIds(ids);
-    };
+    };*/
 
+    const { selectedFolder, noteIds, handleFolderSelect } = useNotes();
     return(
            
         <div>
